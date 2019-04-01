@@ -1,0 +1,23 @@
+<div class="main answers-edit">
+    <div class="container">
+        <div class="form-heading">回答を編集する</div>
+        <%= form_tag("/answers/#{@answer.id}/update") do %>
+            <div class="form">
+                <div class="form-body">
+                    <% @answer.errors.full_messages.each do |message| %>
+                        <div class="form-error">
+                            <%= message %>
+                        </div>
+                    <% end %>
+
+                    <textarea name="content" id="" cols="30" rows="10"><%= @answer.content %></textarea>
+                    <div class="textarea-left">
+                        <span id="characters-count">0</span> / <%= ApplicationController::MAX_CHAR_LENGTH %>
+                        <div><%= link_to('※ソースコードを投稿する場合の注意点', "/help") %></div>
+                    </div>
+                    <input type="submit" value="投稿する">
+                </div>
+            </div>
+        <% end %>
+    </div>
+<div>

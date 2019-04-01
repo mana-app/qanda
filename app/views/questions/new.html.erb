@@ -1,0 +1,23 @@
+<div class="main questions-new">
+    <div class="container">
+        <div class="form-heading">新規投稿</div>
+        <%= form_tag('/questions/create') do %>
+            <div class="form">
+                <div class="form-body">
+                    <% @question.errors.full_messages.each do |message| %>
+                        <div class="form-error">
+                            <%= message %>
+                        </div>
+                    <% end %>
+
+                    <textarea name="content" rows="10" placeholder="ここに質問を入力してください"><%= @question.content %></textarea>
+                    <div class="textarea-left">
+                        <span id="characters-count">0</span> / <%= ApplicationController::MAX_CHAR_LENGTH %>
+                        <div><%= link_to('※ソースコードを投稿する場合の注意点', "/help") %></div>
+                    </div>
+                    <input type="submit" value="投稿する">
+                </div>
+            </div>
+        <% end %>
+    </div>
+</div>

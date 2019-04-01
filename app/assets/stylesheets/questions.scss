@@ -1,0 +1,134 @@
+// Place all the styles related to the questions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* questions/index ================================ */
+/* 他Viewと共通のため変更注意 */
+.questions-index-item {
+    padding: 20px 30px;
+    background-color: white;
+    overflow: hidden;
+    box-shadow: 0 2px 6px #c1ced7;
+}
+
+.question-left img {
+    width: 50px;
+    height: 50px;
+    border-radius: 40%;
+    box-shadow: 0 2px 6px #c1ced7;
+    object-fit: cover;
+}
+
+.question-user-name a {
+    color: #14171a;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.question-left {
+    float: left;
+    width: 10%;
+}
+
+.question-right {
+    float: left;
+    width: 90%;
+    padding-left: 25px;
+    text-align: left;
+}
+
+.question-right-content a {
+    color: #131619;
+    font-size: 14px;
+    display: block;
+}
+
+.question-user-name time {
+    color: gray;
+    font-size: small;
+}
+
+.question-right-footer {
+    padding-top: 10px;
+}
+
+.question-right-footer span {
+    color: gray;
+}
+
+.question-property {
+    display: inline-block;
+    width: 15%;
+}
+/* 共通CSS end */
+
+.new-question-link {
+    text-align: center;
+}
+
+.new-question-link a {
+    display: inline-block;
+    color: white;
+    background-color: pink;
+    margin: 30px;
+    padding: 10px 50px;
+    border-radius: 2px;
+    transition: all .2s;
+}
+
+.new-question-link a:hover {
+    text-decoration: none;
+    background-color: lightpink;
+}
+
+/* questions/show ================================ */
+.questions-show-item {
+    padding: 30px;
+    background-color: white;
+    box-shadow: 0 2px 6px #c1ced7;
+    overflow: hidden;
+}
+
+.questions-show-item img {
+    width: 60px;
+    height: 60px;
+    border-radius: 40%;
+    box-shadow: 0 2px 6px #c1ced7;
+    vertical-align: middle;
+    object-fit: cover;
+}
+
+.questions-show-item .question-user-name a {
+    vertical-align: middle;
+    font-size: 24px;
+    margin-left: 15px;
+}
+
+.questions-show-item p {
+    font-size: 16px;
+    margin: 20px 0;
+}
+
+.question-time {
+    color: #657786;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.like-btn-link {
+    color: #8899a6;
+}
+
+.unlike-btn-link {
+    color: lightpink;
+}
+
+.like-btn-link:hover, .unlike-btn-link:hover {
+    text-decoration: none;
+}
+
+.question-menus {
+    float: right;
+}
+
+/* questions/new ================================ */

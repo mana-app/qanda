@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>質問掲示板</title>
+    <%= favicon_link_tag('favicon.ico') %>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+
+  <body>
+    <header>
+      <div class="header-logo">
+        <% if @current_user %>
+          <%= link_to('質問掲示板', '/questions/index') %>
+        <% else %>
+          <%= link_to('質問掲示板', '/') %>
+        <% end %>
+      </div>
+
+      <ul class="header-menus">
+        <% if @current_user %>
+          <li>
+            <%= link_to(@current_user.name + ' さん', "/users/#{@current_user.id}") %>
+          </li>
+          <li>
+            <%= link_to('質問一覧', '/questions/index') %>
+          </li>
+          <li>
+            <%= link_to('質問する', '/questions/new') %>
+          </li>
+          <li>
+            <%= link_to('ユーザー一覧', '/users/index') %>
+          </li>
+          <li>
+            <%= link_to('ログアウト', '/logout', method: :post, data: {confirm: "【確認】\nログアウトしますか？"}) %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to('ログイン', '/login') %>
+          </li>
+          <li>
+            <%= link_to('新規登録', '/signup') %>
+          </li>
+        <% end %>
+        <li>
+            <%= link_to('ヘルプ', '/help') %>
+        </li>
+      </ul>
+
+      <%# responsive-design %>
+      <div class="menu-icon">
+        <i class="fas fa-bars" id="menu-icon"></i>
+      </div>
+    </header>
+
+    <%# z-index指定時にスタックコンテキストが異なるため<header>タグ内から移動 %>
+    <div class="nav-overlap">
+        <ul class="nav-menus">
+          <% if @current_user %>
+            <li>
+              <%= link_to(@current_user.name + ' さん', "/users/#{@current_user.id}") %>
+            </li>
+            <li>
+              <%= link_to('質問一覧', '/questions/index') %>
+            </li>
+            <li>
+              <%= link_to('質問する', '/questions/new') %>
+            </li>
+            <li>
+              <%= link_to('ユーザー一覧', '/users/index') %>
+            </li>
+            <li>
+              <%= link_to('ログアウト', '/logout', method: :post, data: {confirm: "【確認】\nログアウトしますか？"}) %>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to('ログイン', '/login') %>
+            </li>
+            <li>
+              <%= link_to('新規登録', '/signup') %>
+            </li>
+          <% end %>
+          <li>
+              <%= link_to('ヘルプ', '/help') %>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+
+    <%= yield %>
+
+  </body>
+</html>

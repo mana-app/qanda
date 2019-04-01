@@ -1,0 +1,55 @@
+<div class="main questions-index">
+    <div class="container">
+        <div class="main-heading">質問一覧</div>
+            <% @questions.each do |question| %>
+                <% user = question.user() %>
+                <div class="questions-index-item">
+                    <div class="question-left">
+                        <%= link_to("/users/#{user.id}") do %>
+                            <img src="<%= "/user_images/#{user.image_name}" %>">
+                        <% end %>
+                    </div>
+                    <div class="question-right">
+                        <div class="question-right-header">
+                            <div class="question-user-name">
+                                <%= link_to("/users/#{user.id}") do %>
+                                    <%= user.name %>
+                                <% end %>
+                                <time>
+                                    ・<%= time_ago_in_words(question.created_at) %>
+                                </time>
+                            </div>
+                        </div>
+                        <div class="question-right-content">
+                            <%= link_to("/questions/#{question.id}") do %>
+                                <%= question.content.truncate(140) %>
+                            <% end %>
+                        </div>
+                        <div class="question-right-footer">
+                            <span class="question-property">
+                                <i class="far fa-comment-dots"></i>
+                                <% if question.count_answers() != 0 %>
+                                    <span>
+                                        <%= question.count_answers() %>
+                                    </span>
+                                <% end %>
+                            </span>
+                            <span class="question-property">
+                                <i class="far fa-heart like-btn"></i>
+                                <% if question.count_likes() != 0 %>
+                                    <span>
+                                        <%= question.count_likes() %>
+                                    </span>
+                                <% end %>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            <% end %>
+            <%= paginate @questions %>
+
+        <div class="new-question-link">
+            <%= link_to('新規の質問をする', "/questions/new") %>
+        </div>
+    </div>
+</div>

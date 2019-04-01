@@ -1,0 +1,101 @@
+<div class="main questions-show">
+    <div class="container">
+        <div class="main-heading">質問</div>
+        <div class="questions-show-item">
+            <div class="question-user-name">
+                <img src="<%= "/user_images/#{@question_user.image_name}" %>">
+                <%= link_to(@question_user.name, "/users/#{@question_user.id}") %>
+            </div>
+            <p>
+                <%= markdown(@question.content) %>
+            </p>
+            <div class="question-time">
+                <%= @question.created_at.strftime("%k:%M - %Y年%m月%d日") %>
+                <% if @question.updated_at > @question.created_at %>
+                  （編集済み）
+                <% end %>
+            </div>
+
+            <% if Like.find_by(user_id: @current_user.id, question_id: @question.id) %>
+                <%= link_to("/likes/#{@question.id}/destroy", {method: :post, class: "unlike-btn-link"}) do %>
+                    <i class="fas fa-heart like-btn-unlike"></i>
+                    <%= @likes_count %>
+                <% end %>
+            <% else %>
+                <%= link_to("/likes/#{@question.id}/create", {method: :post, class: "like-btn-link"}) do %>
+                    <i class="far fa-heart like-btn"></i>
+                    <%= @likes_count %>
+                <% end %>
+            <% end %>
+
+            <% if @current_user.id == @question.user_id %>
+                <div class="question-menus">
+                    <%= link_to('編集する', "/questions/#{@question.id}/edit") %>
+                    <%= link_to('削除する', "/questions/#{@question.id}/destroy", method: :post, data: {confirm: "一度質問を削除すると復元することは出来ません。\n質問に対する回答も削除されます。\n本当に削除しますか？"}) %>
+                </div>
+            <% end %>
+        </div>
+
+        <%# 回答表示エリア %>
+        <div class="main-heading">回答</div>
+        <% if @answers.present? %>
+            <% @answers.each_with_index do |answer, i| %>
+                <%# 回答編集時に編集した要素に飛べるようにするため、idをつける %>
+                <% if flash[:answer_id] == answer.id %>
+                    <div class="questions-show-item" id="update">
+                <%# 回答投稿時に投稿した要素に飛べるようにするため、最後の要素にidをつける %>
+                <% elsif i == @answers.length - 1 %>
+                    <div class="questions-show-item" id="post">
+                <% else %>
+                    <div class="questions-show-item">
+                <% end %>
+                        <% answer_user = User.find_by(id: answer.user_id) %>
+                        <div class="question-user-name">
+                            <img src="<%= "/user_images/#{answer_user.image_name}" %>">
+                            <%= link_to(answer_user.name, "/users/#{answer_user.id}") %>
+                        </div>
+                        <p>
+                            <%= markdown(answer.content) %>
+                        </p>
+                        <div class="question-time">
+                            <%= answer.created_at.strftime("%k:%M - %Y年%m月%d日") %>
+                            <% if answer.updated_at > answer.created_at %>
+                                （編集済み）
+                            <% end %>
+                        </div>
+                        <% if @current_user.id == answer.user_id %>
+                            <div class="question-menus">
+                                <%= link_to('編集する', "/answers/#{answer.id}/edit") %>
+                                <%= link_to('削除する', "/answers/#{answer.id}/destroy", method: :post, data: {confirm: "一度回答を削除すると復元することは出来ません。\n本当に削除しますか？"}) %>
+                            </div>
+                        <% end %>
+                    </div>
+            <% end %>
+        <% else %>
+            <div style="text-align: center;">
+                まだ回答はありません
+            </div>
+        <% end %>
+
+        <%# 回答投稿フォーム %>
+        <div id="answer-form">
+            <div class="form-heading">この質問に回答する</div>
+            <%= form_tag("/answers/#{@question.id}/create") do %>
+                <div class="form">
+                    <div class="form-body">
+                        <div class="form-error">
+                            <%= flash[:error_message] %>
+                        </div>
+
+                        <textarea name="content" rows="10" placeholder="ここに回答を入力してください"><%= flash[:content] %></textarea><br>
+                        <div class="textarea-left">
+                            <span id="characters-count">0</span> / <%= ApplicationController::MAX_CHAR_LENGTH %>
+                            <div><%= link_to('※ソースコードを投稿する場合の注意点', "/help") %></div>
+                        </div>
+                        <input type="submit" value="投稿する">
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>

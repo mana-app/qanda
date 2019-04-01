@@ -1,0 +1,72 @@
+<div class="main user-show">
+    <div class="container">
+        <div class="main-heading">ユーザー情報</div>
+        <div class="user">
+            <img src="<%= "/user_images/#{@user.image_name}" %>">
+            <h2><%= @user.name %>さん</h2>
+            
+            <p>登録日：<%= @user.created_at.strftime("%Y-%m-%d %H:%M:%S") %></p>
+            <% if @current_user.id == @user.id %>
+                <%= link_to('ユーザー情報を編集する', "/users/#{@user.id}/edit") %>
+            <% end %>
+        </div>
+
+        <ul class="user-tabs">
+            <li class="active">
+                <%= link_to('質問', "/users/#{@user.id}") %>
+            </li>
+            <li>
+                <%= link_to('回答', "/users/#{@user.id}/answers") %>
+            </li>
+            <li>
+                <%= link_to('いいね', "/users/#{@user.id}/likes") %>
+            </li>
+        </ul>
+        
+        <% @questions.each do |question| %>
+            <div class="questions-index-item">
+                <div class="question-left">
+                    <%= link_to("/users/#{@user.id}") do %>
+                        <img src="<%= "/user_images/#{@user.image_name}" %>">
+                    <% end %>
+                </div>
+                <div class="question-right">
+                    <div class="question-right-header">
+                        <div class="question-user-name">
+                            <%= link_to("/users/#{@user.id}") do %>
+                                <%= @user.name %>
+                            <% end %>
+                            <time>
+                                ・<%= time_ago_in_words(question.created_at) %>
+                            </time>
+                        </div>
+                    </div>
+                    <div class="question-right-content">
+                        <%= link_to("/questions/#{question.id}") do %>
+                            <%= question.content.truncate(140) %>
+                        <% end %>
+                    </div>
+                    <div class="question-right-footer">
+                        <span class="question-property">
+                            <i class="far fa-comment-dots"></i>
+                            <% if question.count_answers() != 0 %>
+                                <span>
+                                    <%= question.count_answers() %>
+                                </span>
+                            <% end %>
+                        </span>
+                        <span class="question-property">
+                            <i class="far fa-heart like-btn"></i>
+                            <% if question.count_likes() != 0 %>
+                                <span>
+                                    <%= question.count_likes() %>
+                                </span>
+                            <% end %>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+        <%= paginate @questions %>
+    </div>
+</div>

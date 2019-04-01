@@ -1,0 +1,57 @@
+<div class="main user-show">
+    <div class="container">
+        <div class="main-heading">ユーザー情報</div>
+        <div class="user">
+            <img src="<%= "/user_images/#{@user.image_name}" %>">
+            <h2><%= @user.name %>さん</h2>
+            
+            <p>登録日：<%= @user.created_at.strftime("%Y-%m-%d %H:%M:%S") %></p>
+            <% if @current_user.id == @user.id %>
+                <%= link_to('ユーザー情報を編集する', "/users/#{@user.id}/edit") %>
+            <% end %>
+        </div>
+
+        <ul class="user-tabs">
+            <li>
+                <%= link_to('質問', "/users/#{@user.id}") %>
+            </li>
+            <li>
+                <%= link_to('回答', "/users/#{@user.id}/answers") %>
+            </li>
+            <li class="active">
+                <%= link_to('いいね', "/users/#{@user.id}/likes") %>
+            </li>
+        </ul>
+
+        <% @likes.each do |like| %>
+            <% question = Question.find_by(id: like.question_id) %>
+            <%# いいねをつけた質問が削除された場合に、エラーを防ぐためチェックする %>
+            <% if question.present? %>
+                <div class="questions-index-item">
+                    <% question_user = User.find_by(id: question.user_id) %>
+                    <div class="question-left">
+                        <%= link_to("/users/#{@user.id}") do %>
+                            <img src="<%= "/user_images/#{question_user.image_name}" %>">
+                        <% end %>
+                    </div>
+                    <div class="question-right">
+                        <div class="question-user-name">
+                            <%= link_to(question_user.name, "/users/#{@user.id}") %>
+                        </div>
+                        <div class="question-right-content">
+                            <%= link_to(question.content.truncate(140), "/questions/#{question.id}") %>
+                        </div>
+                    </div>
+                </div>
+            <% else %>
+                <div class="questions-index-item" style="color: #AEB6BF;">
+                    投稿者によって削除されました...
+                </div>
+            <% end %>
+        <% end %>
+
+        <%# ページネーションの1ページあたりの表示数が、質問の削除分もカウントされるため、
+            いいねをつけた質問が削除された場合に、1ページあたりの表示数が少なくなる %>
+        <%= paginate @likes %>
+    </div>
+</div>

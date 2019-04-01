@@ -1,0 +1,46 @@
+<div class="main user-show">
+    <div class="container">
+        <div class="main-heading">ユーザー情報</div>
+        <div class="user">
+            <img src="<%= "/user_images/#{@user.image_name}" %>">
+            <h2><%= @user.name %>さん</h2>
+            
+            <p>登録日：<%= @user.created_at.strftime("%Y-%m-%d %H:%M:%S") %></p>
+            <% if @current_user.id == @user.id %>
+                <%= link_to('ユーザー情報を編集する', "/users/#{@user.id}/edit") %>
+            <% end %>
+        </div>
+
+        <ul class="user-tabs">
+            <li>
+                <%= link_to('質問', "/users/#{@user.id}") %>
+            </li>
+            <li class="active">
+                <%= link_to('回答', "/users/#{@user.id}/answers") %>
+            </li>
+            <li>
+                <%= link_to('いいね', "/users/#{@user.id}/likes") %>
+            </li>
+        </ul>
+
+        <%# 回答した質問が削除された場合に、リンク先でエラーが発生する -> リダイレクトで解決 %>
+        <% @answers.each do |answer| %>
+            <div class="questions-index-item">
+                <div class="question-left">
+                    <%= link_to("/users/#{@user.id}") do %>
+                        <img src="<%= "/user_images/#{@user.image_name}" %>">
+                    <% end %>
+                </div>
+                <div class="question-right">
+                    <div class="question-user-name">
+                        <%= link_to(@user.name, "/users/#{@user.id}") %>
+                    </div>
+                    <div class="question-right-content">
+                        <%= link_to(answer.content.truncate(140), "/questions/#{answer.question_id}") %>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+        <%= paginate @answers %>
+    </div>
+</div>

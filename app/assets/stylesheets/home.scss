@@ -1,0 +1,333 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* reset ================================ */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font: 'Avenir Next', 'Hiragino Sans', sans-serif;
+}
+
+ul, li {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #0270C8;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+input {
+    background-color: transparent;
+}
+
+form input[type="submit"] {
+    border: none;
+    cursor: pointer;
+}
+
+/* 共通レイアウト ================================ */
+body {
+    margin: 0;
+}
+
+.main {
+    position: absolute;
+    top: 48px;
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+    background-color: #fffafa;
+
+    // headerのposition:fixed;による追加
+    margin-top: -48px;
+    padding-top: 48px;
+}
+
+.container {
+    max-width: 600px;
+    margin: 48px auto;
+    clear: both;
+}
+
+/* ヘッダー ================================ */
+header {
+    height: 48px;
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    background-color: pink;
+}
+
+.header-logo {
+    float: left;
+    color: white;
+}
+
+.header-logo a {
+    display: block;
+    font-size: 24px;
+    line-height: 48px;
+    color: white;
+    margin-left: 20px;
+    transition: all .2s;
+}
+
+header a:hover {
+    text-decoration: none;
+    color: hotpink;
+}
+
+.header-menus {
+    float: right;
+    margin-right: 20px;
+}
+
+.header-menus li {
+    float: left;
+    list-style: none;
+    line-height: 48px;
+    color: white;
+}
+
+.header-menus a {
+    display: block;
+    padding: 0 10px;
+    font-size: 14px;
+    color: white;
+    transition: all .2s;
+}
+
+.header-menus a:hover {
+    box-shadow: inset 0 -3px 0 0 hotpink;
+}
+
+// responsive-design
+#menu-icon {
+    color: white;
+    float: right;
+    font-size: 25px;
+    padding: 0 20px;
+    display: none;
+    cursor: pointer;
+}
+
+#menu-icon:hover {
+    color: hotpink;
+}
+
+.nav-overlap {
+    background-color: pink;
+    width: 100%;
+    text-align: center;
+    height: auto;
+    position: fixed;
+    z-index: 2;
+    top: 48px;
+    right: 0;
+    display: none;
+}
+
+.nav-menus {
+    margin: 40px 0;
+    display: none;
+}
+
+.nav-overlap a {
+    display: block;
+    width: 90%;
+    margin: 0 auto;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    border-top: 1px solid white;
+    transition: all .2s;
+
+    // menu-iconを押したときに、menu listが選択された状態になるため選択不可にする
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer */
+    -khtml-user-select: none; /* KHTML browsers (e.g. Konqueror) */
+    -webkit-user-select: none; /* Chrome, Safari, and Opera */
+    -webkit-touch-callout: none; /* Disable Android and iOS callouts*/
+}
+
+.nav-overlap a:hover {
+    color: hotpink;
+}
+// responsive-design end
+
+/* top ================================ */
+.top-main {
+    text-align: center;
+    color: #121212;
+    box-shadow: 0 2px 6px #c1ced7;
+}
+
+.top-message {
+    width: 600px;
+    text-align: center;
+    position: relative;
+    display: inline-block;
+    background-color: white;
+    margin-top: 92px;
+    padding: 30px 0;
+    box-shadow: 0 2px 6px #c1ced7;
+}
+
+.signup a {
+    margin-top: 20px;
+    display: inline-block;
+    padding: 10px 30px;
+    background-color: pink;
+    color: white;
+}
+
+.signup a:hover {
+    text-decoration: none;
+    background-color: lightpink;
+}
+
+.main-additional-text {
+    padding-top: 30px;
+    color: gray;
+    font-size: small;
+}
+
+.main-additional-text li {
+    padding-bottom: 5px;
+    text-align: center;
+}
+
+.fa-github {
+    padding-right: 5px;
+}
+
+/* help ================================ */
+.help {
+    // アコーディオンが開いたときに、スクロールバーが表示されページ全体がずれるのを防ぐ
+    margin: 0;
+    padding: 0;
+}
+
+.help-list-item {
+    background-color: white;
+    overflow: hidden;
+    box-shadow: 0 2px 6px #c1ced7;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.help-question {
+    padding: 20px 30px;
+    cursor: pointer;
+}
+
+.help-question span {
+    float: right;
+    font-weight: bold;
+
+}
+
+.help-answer {
+    display: none;
+    padding: 20px 30px;
+    background-color: #E8EBED;
+}
+
+/* フォーム ================================ */
+.form {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: white;
+    box-shadow: 0 2px 6px #c1ced7;
+}
+
+.form-heading, .main-heading {
+    margin: 60px 0 20px;
+    font-size: 32px;
+    color: #bcc8d4;
+    text-align: center;
+}
+
+.form-body {
+    padding: 30px;
+    overflow: hidden;
+}
+
+.form-error {
+    color: #ff4d75;
+}
+
+.form input {
+    width: 100%;
+    border: 1px solid #d8dadf;
+    padding: 10px;
+    color: #57575f;
+    font-size: 16px;
+    letter-spacing: 2px;
+    border-radius: 2px;
+}
+
+.form textarea {
+    width: 100%;
+    font-size: 16px;
+    padding: 10px;
+}
+
+.form input[type="submit"] {
+    background-color: pink;
+    color: white;
+    cursor: pointer;
+    font-weight: 300;
+    width: 120px;
+    border-radius: 2px;
+    margin-top: 8px;
+    margin-bottom: 0;
+    float: right;
+    transition: all .2s
+}
+
+.form input[type="submit"]:hover {
+    background-color: lightpink;
+}
+
+// 文字数表示
+.textarea-left {
+    float: left;
+    color: gray;
+}
+
+/* フラッシュ ================================ */
+.flash {
+    padding: 10px 0;
+    color: white;
+    background-color: #4BBD06;
+    text-align: center;
+    position: fixed;
+    top: 48px;
+    z-index: 1;
+    width: 100%
+}
+
+/* ページネーション ================================ */
+.pagination {
+    text-align: center;
+}
+
+.pagination span {
+    display: inline-block;
+    padding: 5px;
+}
+
+.pagination .current {
+    color: hotpink;
+}

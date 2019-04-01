@@ -1,0 +1,80 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* users/index ================================ */
+.users-index-item {
+    padding: 20px 30px;
+    background-color: white;
+    overflow: hidden;
+    box-shadow: 0 2px 6px #c1ced7;
+    display: table;
+    width: 100%;
+}
+
+.user-left img {
+    width: 50px;
+    height: 50px;
+    border-radius: 40%;
+    box-shadow: 0 2px 6px #c1ced7;
+    object-fit: cover;
+}
+
+.user-left {
+    float: left;
+    width: 10%;
+}
+
+.user-right {
+    width: 90%;
+    padding-left: 25px;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+/* users/show ================================ */
+.user-show {
+    text-align: center;
+}
+
+.user {
+    margin-bottom: 20px;
+}
+
+.user img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px #c1ced7;
+    object-fit: cover;
+}
+
+.user-tabs {
+    margin-top: 40px;
+    background-color: white;
+    overflow: hidden;
+    box-shadow: 0 2px 6px #c1ced7;
+}
+
+.user-tabs li {
+    float: left;
+}
+
+.user-tabs li.active {
+    border-bottom: 2px solid pink;
+}
+
+.user-tabs li.active a {
+    color: lightpink;
+}
+
+.user-tabs a {
+    display: inline-block;
+    padding: 16px 30px;
+    color: #afb6bf;
+}
+
+/* users/new, users/edit ================================ */
+.users-form input {
+    margin-bottom: 15px;
+}
