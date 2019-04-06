@@ -1,4 +1,13 @@
 module ApplicationHelper
+  def full_title(page_title = '')
+    base_title = "質問掲示板"
+    if page_title.empty?
+      base_title
+    else
+      "#{page_title} - #{base_title}"
+    end
+  end
+
   def markdown(text)
     render_options = {
       filter_html: true,
