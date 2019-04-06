@@ -43,9 +43,13 @@
     display: block;
 }
 
-.question-user-name time {
+.question-user-name .timestamp {
     color: gray;
     font-size: small;
+}
+
+.question-user-name .timestamp::before {
+    content: '・';
 }
 
 .question-right-footer {

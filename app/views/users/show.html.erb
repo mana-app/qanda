@@ -36,9 +36,9 @@
                             <%= link_to("/users/#{@user.id}") do %>
                                 <%= @user.name %>
                             <% end %>
-                            <time>
-                                ・<%= time_ago_in_words(question.created_at) %>
-                            </time>
+                            <span class="timestamp">
+                                <%= time_ago_in_words(question.created_at) %>
+                            </span>
                         </div>
                     </div>
                     <div class="question-right-content">
