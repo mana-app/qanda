@@ -27,30 +27,30 @@
       <ul class="header-menus">
         <% if @current_user %>
           <li>
-            <%= link_to(@current_user.name + ' さん', "/users/#{@current_user.id}") %>
+            <%= link_to(@current_user.name + ' さん', "/users/#{@current_user.id}", class: active_class("/users/#{@current_user.id}")) %>
           </li>
           <li>
-            <%= link_to('質問一覧', '/questions/index') %>
+            <%= link_to('質問一覧', '/questions/index', class: active_class('/questions/index')) %>
           </li>
           <li>
-            <%= link_to('質問する', '/questions/new') %>
+            <%= link_to('質問する', '/questions/new', class: active_class('/questions/new')) %>
           </li>
           <li>
-            <%= link_to('ユーザー一覧', '/users/index') %>
+            <%= link_to('ユーザー一覧', '/users/index', class: active_class('/users/index')) %>
           </li>
           <li>
             <%= link_to('ログアウト', '/logout', method: :post, data: {confirm: "【確認】\nログアウトしますか？"}) %>
           </li>
         <% else %>
           <li>
-            <%= link_to('ログイン', '/login') %>
+            <%= link_to('ログイン', '/login', class: active_class('/login')) %>
           </li>
           <li>
-            <%= link_to('新規登録', '/signup') %>
+            <%= link_to('新規登録', '/signup', class: active_class('/signup')) %>
           </li>
         <% end %>
         <li>
-            <%= link_to('ヘルプ', '/help') %>
+            <%= link_to('ヘルプ', '/help', class: active_class('/help')) %>
         </li>
       </ul>
 
@@ -65,30 +65,30 @@
         <ul class="nav-menus">
           <% if @current_user %>
             <li>
-              <%= link_to(@current_user.name + ' さん', "/users/#{@current_user.id}") %>
+              <%= link_to(@current_user.name + ' さん', "/users/#{@current_user.id}", class: active_class("/users/#{@current_user.id}")) %>
             </li>
             <li>
-              <%= link_to('質問一覧', '/questions/index') %>
+              <%= link_to('質問一覧', '/questions/index', class: active_class('/questions/index')) %>
             </li>
             <li>
-              <%= link_to('質問する', '/questions/new') %>
+              <%= link_to('質問する', '/questions/new', class: active_class('/questions/new')) %>
             </li>
             <li>
-              <%= link_to('ユーザー一覧', '/users/index') %>
+              <%= link_to('ユーザー一覧', '/users/index', class: active_class('/users/index')) %>
             </li>
             <li>
               <%= link_to('ログアウト', '/logout', method: :post, data: {confirm: "【確認】\nログアウトしますか？"}) %>
             </li>
           <% else %>
             <li>
-              <%= link_to('ログイン', '/login') %>
+              <%= link_to('ログイン', '/login', class: active_class('/login')) %>
             </li>
             <li>
-              <%= link_to('新規登録', '/signup') %>
+              <%= link_to('新規登録', '/signup', class: active_class('/signup')) %>
             </li>
           <% end %>
           <li>
-              <%= link_to('ヘルプ', '/help') %>
+              <%= link_to('ヘルプ', '/help', class: active_class('/help')) %>
           </li>
         </ul>
       </div>

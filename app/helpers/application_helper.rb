@@ -8,6 +8,12 @@ module ApplicationHelper
     end
   end
 
+  def active_class(path)
+    if current_page?(path)
+      return 'active' 
+    end
+  end
+
   def markdown(text)
     render_options = {
       filter_html: true,
