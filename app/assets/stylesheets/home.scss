@@ -117,17 +117,51 @@ header a:hover {
 }
 
 // responsive-design
-#menu-icon {
-    color: white;
+.menu-icon {
     float: right;
-    font-size: 25px;
-    padding: 0 20px;
+    position: relative;
+    width: 48px;
+    height: 48px;
     display: none;
     cursor: pointer;
 }
 
-#menu-icon:hover {
-    color: hotpink;
+.menu-icon span {
+    position: absolute;
+    right: 12px;
+    width: 24px;
+    height: 2px;
+    background-color: white;
+    border-radius: 1px;
+    transition: all .2s;
+}
+
+.menu-icon:hover span {
+    background: hotpink;
+}
+
+.menu-icon .top {
+    top: 17px;
+}
+
+.menu-icon .middle {
+    top: 23px;
+}
+
+.menu-icon .bottom {
+    bottom: 17px;
+}
+
+.menu-icon.open .top {
+    transform: translateY(6px) rotate(-45deg);
+}
+
+.menu-icon.open .middle {
+    opacity: 0;
+}
+
+.menu-icon.open .bottom {
+    transform: translateY(-6px) rotate(45deg);
 }
 
 .nav-overlap {
@@ -313,6 +347,12 @@ header a:hover {
 .textarea-left {
     float: left;
     color: gray;
+}
+
+// エラー時のハイライト
+div.field_with_errors > input {
+    border-color: #d00;
+    box-shadow: 0 0 0 3px rgba(221, 0, 0, .1) inset;
 }
 
 /* フラッシュ ================================ */

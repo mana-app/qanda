@@ -19,8 +19,8 @@
 $(function() {
     // レスポンシブデザイン
     // click()では、後からHTMLを変更した場合に動作しないため、on()を使用する
-    $(document).on('click', function(event) {
-        if (!$(event.target).closest('.menu-icon').length) {
+    $(document).on('click', function(e) {
+        if (!$(e.target).closest('.menu-icon').length) {
             // ターゲット以外の要素をクリックしたときの処理
             if ($('.nav-overlap').hasClass('nav-open')) {
                 navClose();
@@ -36,16 +36,14 @@ $(function() {
     });
   
     function navClose() {
-        var iconHtml = '<i class="fas fa-bars" id="menu-icon"></i>';
         $('.nav-overlap').removeClass('nav-open');
-        $('#menu-icon').replaceWith(iconHtml);
+        $('.menu-icon').removeClass('open');
         $('.nav-overlap').slideUp('fast');
     }
   
     function navOpen() {
-        var iconHtml = '<i class="fas fa-times" id="menu-icon"></i>';
         $('.nav-overlap').addClass('nav-open');
-        $('#menu-icon').replaceWith(iconHtml);
+        $('.menu-icon').addClass('open');
         $('.nav-overlap').slideDown('fast');
     }
 
