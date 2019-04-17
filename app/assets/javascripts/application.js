@@ -39,12 +39,14 @@ $(function() {
         $('.nav-overlap').removeClass('nav-open');
         $('.menu-icon').removeClass('open');
         $('.nav-overlap').slideUp('fast');
+        $('.nav-overlap-background').fadeOut('fast');
     }
   
     function navOpen() {
         $('.nav-overlap').addClass('nav-open');
         $('.menu-icon').addClass('open');
         $('.nav-overlap').slideDown('fast');
+        $('.nav-overlap-background').fadeIn('fast');
     }
 
     // フラッシュメッセージの自動消去

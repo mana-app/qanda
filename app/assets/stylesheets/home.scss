@@ -164,6 +164,16 @@ header a:hover {
     transform: translateY(-6px) rotate(45deg);
 }
 
+.nav-overlap-background {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    top: 48px;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, .5);
+}
+
 .nav-overlap {
     background-color: pink;
     width: 100%;
