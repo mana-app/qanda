@@ -157,7 +157,9 @@ header a:hover {
 }
 
 .menu-icon.open .middle {
-    opacity: 0;
+    position: absolute;
+    right: 50%;
+    width: 0;
 }
 
 .menu-icon.open .bottom {
@@ -199,7 +201,7 @@ header a:hover {
     text-decoration: none;
     padding: 10px;
     border-top: 1px solid white;
-    transition: all .2s;
+    transition: all .2s ease-out;
 
     // menu-iconを押したときに、menu listが選択された状態になるため選択不可にする
     -moz-user-select: none; /* Firefox */
@@ -346,11 +348,20 @@ header a:hover {
     margin-top: 8px;
     margin-bottom: 0;
     float: right;
-    transition: all .2s
+    transition: all .2s;
 }
 
 .form input[type="submit"]:hover {
     background-color: lightpink;
+}
+
+.form input[type="checkbox"]#default-image {
+    width: 1em;
+    vertical-align: top;
+}
+
+.disabled {
+    opacity: .2;
 }
 
 // 文字数表示

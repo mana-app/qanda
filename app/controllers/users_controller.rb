@@ -49,9 +49,16 @@ class UsersController < ApplicationController
     @user.name = params[:name]
     @user.email = params[:email]
 
-    if params[:image]
-      @user.image_name = "#{@user.id}.jpg"
-      File.binwrite("public/user_images/#{@user.image_name}", params[:image].read)
+    if params[:default_image] == 'true'
+      @user.image_name = 'default_user.png'
+    elsif params[:image]
+      if check_size?(params[:image])
+        @user.image_name = "#{@user.id}.jpg"
+        File.binwrite("public/user_images/#{@user.image_name}", params[:image].read)
+      else
+        render 'users/edit'
+        return
+      end
     end
 
     if @user.save
@@ -82,6 +89,7 @@ class UsersController < ApplicationController
 
   def logout
     session[:user_id] = nil
+    @current_user = nil
     flash[:notice] = 'ログアウトしました'
     redirect_to("/")
   end
@@ -98,5 +106,14 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
-    end 
+    end
+
+    def check_size?(image)
+      if image.size > 5.megabytes
+        flash[:notice] = '画像サイズを5MB以下にしてください'
+        false
+      else
+        true
+      end
+    end
 end

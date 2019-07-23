@@ -77,13 +77,34 @@ $(document).on('turbolinks:load', function() {
     // テキストエリアの文字数表示
     if ( $('textarea').length ) {
         // ページ表示時
-        var charLength = $('textarea').val().length;
-        $('#characters-count').text(charLength)
+        var stringLength = $('textarea').val().length;
+        $('#characters-count').text(stringLength)
 
         // 文字入力時
         $('textarea').keyup(function() {
-            var charLength = $(this).val().length;
-            $('#characters-count').text(charLength);
+            var stringLength = $(this).val().length;
+            $('#characters-count').text(stringLength);
         });
     }
+
+    // 画像サイズのバリデーション
+    const maxImageSize = 10;
+    $('.user-image').on('change', function() {
+        var size_in_megabytes = this.files[0].size / 1024 / 1024;
+        if (size_in_megabytes > maxImageSize) {
+            alert('画像サイズを５ＭＢ以内にしてください。');
+            $(this).val('');
+        }
+    });
+
+    $('#default-image').change(function() {
+        var checked = $(this).prop('checked');
+        if (checked) {
+            $('.user-image').prop('disabled', true);
+            $('.user-image').addClass('disabled');
+        } else {
+            $('.user-image').prop('disabled', false);
+            $('.user-image').removeClass('disabled');
+        }
+    });
 });

@@ -14,10 +14,16 @@
                 <%= form_tag("/users/#{@user.id}/update", {multipart: true}) do %>
                     <div>ユーザー名</div>
                     <input type="text" name="name" value="<%= @user.name %>">
+
                     <div>メールアドレス</div>
                     <input type="text" name="email" value="<%= @user.email %>">
-                    <div>ユーザー画像</div>
-                    <input type="file" name="image">
+
+                    <div>ユーザー画像（５ＭＢまで）</div>
+                    <input type="file" name="image" accept="image/jpeg,image/gif,image/png" class="user-image">
+
+                    <input type="checkbox" name="default_image" value="true" id="default-image">
+                    <label for="default-image">デフォルト画像にする</label>
+
                     <input type="submit" value="編集する">
                 <% end %>
             </div>
